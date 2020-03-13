@@ -59,12 +59,14 @@ namespace mini_keyboard
                 }
                 button2.Text = "断开";
                 button3.Enabled = gb_left.Enabled = gb_right.Enabled = true;
+                button1.Enabled = false;
             }
             else
             {
                 serialPort1.Close();
                 button2.Text = "连接";
                 button3.Enabled = gb_left.Enabled = gb_right.Enabled = false;
+                button1.Enabled = true;
             }
         }
 
