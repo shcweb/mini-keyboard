@@ -73,6 +73,7 @@ void loop() {
 			Keyboard.press(KEY_LEFT_GUI);
 		Keyboard.print(keys.Lstr);
 		is_left_pressed = true;
+		delay(50);
 	}
 	else if (digitalRead(LPIN) && is_left_pressed)
 	{
@@ -98,6 +99,7 @@ void loop() {
 			Keyboard.press(KEY_LEFT_GUI);
 		Keyboard.print(keys.Rstr);
 		is_right_pressed = true;
+		delay(50);
 	}
 	else if (digitalRead(RPIN) && is_right_pressed)
 	{
