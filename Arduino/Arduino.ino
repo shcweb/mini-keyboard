@@ -7,6 +7,7 @@
 #include <Keyboard.h>
 #include <EEPROM.h>
 
+#define CUT (char)29
 #define LPIN 9
 #define RPIN 13
 
@@ -15,10 +16,12 @@ bool is_press_left = true, is_press_right = true;
 
 struct Keys
 {
-	int Lkey = B00000000;
+	long Lkey = 0;
+	long LFkeys = 0;
 	byte LstrLength = 0;
 	char Lstr[100] = "";
-	int Rkey = B00000000;
+	long Rkey = 0;
+	long RFkeys = 0;
 	byte RstrLength = 0;
 	char Rstr[100] = "";
 } keys;
@@ -67,26 +70,26 @@ void loop() {
 	{
 
 		String key;
-		key = Serial.readStringUntil((char)29);
-		keys.Lkey = 0;
+		key = Serial.readStringUntil(CUT);
+		keys.LFkeys = keys.Lkey = 0;
 		for (int i = 0; i < 8; i++)
 		{
-			keys.Lkey += (key[i] - '0') << i;
+			keys.Lkey += (key[i] != '0' ? 1 : 0) << i;
 		}
-		//Serial.println(key);
-		//Serial.println(keys.Lkey, BIN);
-		strcpy(keys.Lstr, Serial.readStringUntil((char)29).c_str());
-		//Serial.println(keys.Lstr);
-		key = Serial.readStringUntil((char)29);
-		keys.Rkey = 0;
+		for (int i = 0; i < 12; i++)
+			keys.LFkeys += (key[i + 8] != '0' ? 1 : 0) << i;
+		strcpy(keys.Lstr, Serial.readStringUntil(CUT).c_str());
+
+		key = Serial.readStringUntil(CUT);
+		keys.RFkeys = keys.Rkey = 0;
 		for (int i = 0; i < 8; i++)
 		{
-			keys.Rkey += (key[i] - '0') << i;
+			keys.Rkey += (key[i] != '0' ? 1 : 0) << i;
 		}
-		//Serial.println(key);
-		//Serial.println(keys.Rkey, BIN);
-		strcpy(keys.Rstr, Serial.readStringUntil((char)29).c_str());
-		//Serial.println(keys.Rstr);
+		for (int i = 0; i < 12; i++)
+			keys.RFkeys += (key[i + 8] != '0' ? 1 : 0) << i;
+		strcpy(keys.Rstr, Serial.readStringUntil(CUT).c_str());
+
 		keys.LstrLength = strlen(keys.Lstr);
 		keys.RstrLength = strlen(keys.Rstr);
 		EEPROM.put(0, keys);
@@ -97,7 +100,6 @@ void loop() {
 
 	if (!digitalRead(LPIN) && !is_left_pressed)
 	{
-		//Serial.println(keys.Lkey, BIN);
 		if (keys.Lkey & B00000001)
 			Keyboard.press(KEY_LEFT_CTRL);
 		if (keys.Lkey & B00000010)
@@ -114,11 +116,17 @@ void loop() {
 			Keyboard.press(KEY_ESC);
 		if (keys.Lkey & B10000000)
 			Keyboard.press(KEY_BACKSPACE);
+
+		for (int i = 0; i < 12; i++)
+			if (keys.LFkeys & 1 << i)
+				Keyboard.press(KEY_F1 + i);
+
 		if (is_press_left)
 			for (int i = 0; i < keys.LstrLength; i++)
 				Keyboard.press(keys.Lstr[i]);
 		else
 			Keyboard.print(keys.Lstr);
+
 		is_left_pressed = true;
 		while (!digitalRead(LPIN));
 		delay(70);
@@ -128,6 +136,11 @@ void loop() {
 		if (is_press_left)
 			for (int i = 0; i < keys.LstrLength; i++)
 				Keyboard.release(keys.Lstr[i]);
+
+		for (int i = 0; i < 12; i++)
+			if (keys.LFkeys & 1 << i)
+				Keyboard.release(KEY_F1 + i);
+
 		if (keys.Lkey & B00000001)
 			Keyboard.release(KEY_LEFT_CTRL);
 		if (keys.Lkey & B00000010)
@@ -148,7 +161,6 @@ void loop() {
 	}
 	if (!digitalRead(RPIN) && !is_right_pressed)
 	{
-		//Serial.println(keys.Rkey, BIN);
 		if (keys.Rkey & B00000001)
 			Keyboard.press(KEY_LEFT_CTRL);
 		if (keys.Rkey & B00000010)
@@ -165,11 +177,17 @@ void loop() {
 			Keyboard.press(KEY_ESC);
 		if (keys.Rkey & B10000000)
 			Keyboard.press(KEY_BACKSPACE);
+
+		for (int i = 0; i < 12; i++)
+			if (keys.RFkeys & 1 << i)
+				Keyboard.press(KEY_F1 + i);
+
 		if (is_press_right)
 			for (int i = 0; i < keys.RstrLength; i++)
 				Keyboard.press(keys.Rstr[i]);
 		else
 			Keyboard.print(keys.Rstr);
+
 		is_right_pressed = true;
 		while (!digitalRead(LPIN));
 		delay(70);
@@ -179,6 +197,11 @@ void loop() {
 		if (is_press_right)
 			for (int i = 0; i < keys.RstrLength; i++)
 				Keyboard.release(keys.Rstr[i]);
+
+		for (int i = 0; i < 12; i++)
+			if (keys.RFkeys & 1 << i)
+				Keyboard.release(KEY_F1 + i);
+
 		if (keys.Rkey & B00000001)
 			Keyboard.release(KEY_LEFT_CTRL);
 		if (keys.Rkey & B00000010)

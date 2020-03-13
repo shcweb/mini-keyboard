@@ -81,6 +81,18 @@ namespace mini_keyboard
             str += cb_lDel.Checked ? 1 : 0;
             str += cb_lEsc.Checked ? 1 : 0;
             str += cb_lBak.Checked ? 1 : 0;
+            str += cb_lF1.Checked ? 1 : 0;
+            str += cb_lF2.Checked ? 1 : 0;
+            str += cb_lF3.Checked ? 1 : 0;
+            str += cb_lF4.Checked ? 1 : 0;
+            str += cb_lF5.Checked ? 1 : 0;
+            str += cb_lF6.Checked ? 1 : 0;
+            str += cb_lF7.Checked ? 1 : 0;
+            str += cb_lF8.Checked ? 1 : 0;
+            str += cb_lF9.Checked ? 1 : 0;
+            str += cb_lF10.Checked ? 1 : 0;
+            str += cb_lF11.Checked ? 1 : 0;
+            str += cb_lF12.Checked ? 1 : 0;
             str += (char)29;
             str += textBox1.Text;
             str += (char)29;
@@ -92,10 +104,22 @@ namespace mini_keyboard
             str += cb_rDel.Checked ? 1 : 0;
             str += cb_rEsc.Checked ? 1 : 0;
             str += cb_rBak.Checked ? 1 : 0;
+            str += cb_rF1.Checked ? 1 : 0;
+            str += cb_rF2.Checked ? 1 : 0;
+            str += cb_rF3.Checked ? 1 : 0;
+            str += cb_rF4.Checked ? 1 : 0;
+            str += cb_rF5.Checked ? 1 : 0;
+            str += cb_rF6.Checked ? 1 : 0;
+            str += cb_rF7.Checked ? 1 : 0;
+            str += cb_rF8.Checked ? 1 : 0;
+            str += cb_rF9.Checked ? 1 : 0;
+            str += cb_rF10.Checked ? 1 : 0;
+            str += cb_rF11.Checked ? 1 : 0;
+            str += cb_rF12.Checked ? 1 : 0;
             str += (char)29;
             str += textBox2.Text;
             str += (char)29;
-            //MessageBox.Show(str.Replace((char)29, '|'));
+            MessageBox.Show(str.Replace((char)29, '|'));
             serialPort1.WriteLine(str.ToLower());
         }
     }
