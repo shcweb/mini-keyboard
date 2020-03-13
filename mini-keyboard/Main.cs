@@ -19,7 +19,7 @@ namespace mini_keyboard
         private void button1_Click(object sender, EventArgs e)
         {
             string port;
-            for(int i = 0; i < 23; i++)
+            for (int i = 0; i < 23; i++)
             {
                 port = "COM" + i;
                 serialPort1.PortName = port;
@@ -77,7 +77,7 @@ namespace mini_keyboard
             str += cb_lWin.Checked ? 1 : 0;
             str += (char)29;
             str += textBox1.Text;
-            str += (char)29; 
+            str += (char)29;
             str += "";
             str += cb_rCtrl.Checked ? 1 : 0;
             str += cb_rShift.Checked ? 1 : 0;
@@ -86,7 +86,7 @@ namespace mini_keyboard
             str += (char)29;
             str += textBox2.Text;
             str += (char)29;
-            serialPort1.WriteLine(str);
+            serialPort1.WriteLine(str.ToLower());
         }
     }
 }
