@@ -39,20 +39,20 @@ void loop() {
     if (Serial.available() > 0)
     {
         String key;
-        key = Serial.readStringUntil(29);
+        key = Serial.readStringUntil((char)29);
         keys.Lkey = 0;
         for (int i = 0; i < 4; i++)
         {
             keys.Lkey += key[i] << i;
         }
-        strcpy(keys.Lstr, Serial.readStringUntil(29).c_str());
-        key = Serial.readStringUntil(29);
+        strcpy(keys.Lstr, Serial.readStringUntil((char)29).c_str());
+        key = Serial.readStringUntil((char)29);
         keys.Rkey = 0;
         for (int i = 0; i < 4; i++)
         {
             keys.Rkey += key[i] << (3 - i);
         }
-        strcpy(keys.Rstr, Serial.readStringUntil(29).c_str());
+        strcpy(keys.Rstr, Serial.readStringUntil((char)29).c_str());
         keys.RstrLength = strlen(keys.Rstr);
         EEPROM.put(0, keys);
     }

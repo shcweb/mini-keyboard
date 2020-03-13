@@ -42,10 +42,10 @@
             this.button3 = new System.Windows.Forms.Button();
             this.gb_right = new System.Windows.Forms.GroupBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.cb_rWin = new System.Windows.Forms.CheckBox();
+            this.cb_rAlt = new System.Windows.Forms.CheckBox();
+            this.cb_rShift = new System.Windows.Forms.CheckBox();
+            this.cb_rCtrl = new System.Windows.Forms.CheckBox();
             this.gb_left.SuspendLayout();
             this.gb_right.SuspendLayout();
             this.SuspendLayout();
@@ -57,6 +57,7 @@
             this.gb_left.Controls.Add(this.cb_lAlt);
             this.gb_left.Controls.Add(this.cb_lShift);
             this.gb_left.Controls.Add(this.cb_lCtrl);
+            this.gb_left.Enabled = false;
             this.gb_left.Location = new System.Drawing.Point(24, 76);
             this.gb_left.Margin = new System.Windows.Forms.Padding(6);
             this.gb_left.Name = "gb_left";
@@ -152,6 +153,7 @@
             // 
             // button3
             // 
+            this.button3.Enabled = false;
             this.button3.Location = new System.Drawing.Point(632, 20);
             this.button3.Margin = new System.Windows.Forms.Padding(6);
             this.button3.Name = "button3";
@@ -164,10 +166,11 @@
             // gb_right
             // 
             this.gb_right.Controls.Add(this.textBox2);
-            this.gb_right.Controls.Add(this.checkBox1);
-            this.gb_right.Controls.Add(this.checkBox2);
-            this.gb_right.Controls.Add(this.checkBox3);
-            this.gb_right.Controls.Add(this.checkBox4);
+            this.gb_right.Controls.Add(this.cb_rWin);
+            this.gb_right.Controls.Add(this.cb_rAlt);
+            this.gb_right.Controls.Add(this.cb_rShift);
+            this.gb_right.Controls.Add(this.cb_rCtrl);
+            this.gb_right.Enabled = false;
             this.gb_right.Location = new System.Drawing.Point(428, 76);
             this.gb_right.Margin = new System.Windows.Forms.Padding(6);
             this.gb_right.Name = "gb_right";
@@ -185,49 +188,49 @@
             this.textBox2.Size = new System.Drawing.Size(362, 35);
             this.textBox2.TabIndex = 12;
             // 
-            // checkBox1
+            // cb_rWin
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(292, 36);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(78, 28);
-            this.checkBox1.TabIndex = 11;
-            this.checkBox1.Text = "Win";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cb_rWin.AutoSize = true;
+            this.cb_rWin.Location = new System.Drawing.Point(292, 36);
+            this.cb_rWin.Margin = new System.Windows.Forms.Padding(4);
+            this.cb_rWin.Name = "cb_rWin";
+            this.cb_rWin.Size = new System.Drawing.Size(78, 28);
+            this.cb_rWin.TabIndex = 11;
+            this.cb_rWin.Text = "Win";
+            this.cb_rWin.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // cb_rAlt
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(208, 36);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(78, 28);
-            this.checkBox2.TabIndex = 10;
-            this.checkBox2.Text = "Alt";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.cb_rAlt.AutoSize = true;
+            this.cb_rAlt.Location = new System.Drawing.Point(208, 36);
+            this.cb_rAlt.Margin = new System.Windows.Forms.Padding(4);
+            this.cb_rAlt.Name = "cb_rAlt";
+            this.cb_rAlt.Size = new System.Drawing.Size(78, 28);
+            this.cb_rAlt.TabIndex = 10;
+            this.cb_rAlt.Text = "Alt";
+            this.cb_rAlt.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // cb_rShift
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(104, 36);
-            this.checkBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(102, 28);
-            this.checkBox3.TabIndex = 9;
-            this.checkBox3.Text = "Shift";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.cb_rShift.AutoSize = true;
+            this.cb_rShift.Location = new System.Drawing.Point(104, 36);
+            this.cb_rShift.Margin = new System.Windows.Forms.Padding(4);
+            this.cb_rShift.Name = "cb_rShift";
+            this.cb_rShift.Size = new System.Drawing.Size(102, 28);
+            this.cb_rShift.TabIndex = 9;
+            this.cb_rShift.Text = "Shift";
+            this.cb_rShift.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // cb_rCtrl
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(8, 36);
-            this.checkBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(90, 28);
-            this.checkBox4.TabIndex = 8;
-            this.checkBox4.Text = "Ctrl";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.cb_rCtrl.AutoSize = true;
+            this.cb_rCtrl.Location = new System.Drawing.Point(8, 36);
+            this.cb_rCtrl.Margin = new System.Windows.Forms.Padding(4);
+            this.cb_rCtrl.Name = "cb_rCtrl";
+            this.cb_rCtrl.Size = new System.Drawing.Size(90, 28);
+            this.cb_rCtrl.TabIndex = 8;
+            this.cb_rCtrl.Text = "Ctrl";
+            this.cb_rCtrl.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
@@ -267,10 +270,10 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox gb_right;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox cb_rWin;
+        private System.Windows.Forms.CheckBox cb_rAlt;
+        private System.Windows.Forms.CheckBox cb_rShift;
+        private System.Windows.Forms.CheckBox cb_rCtrl;
     }
 }
 

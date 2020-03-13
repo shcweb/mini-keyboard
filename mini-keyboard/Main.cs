@@ -58,19 +58,35 @@ namespace mini_keyboard
                     return;
                 }
                 button2.Text = "断开";
-                gb_left.Enabled = gb_right.Enabled = true;
+                button3.Enabled = gb_left.Enabled = gb_right.Enabled = true;
             }
             else
             {
                 serialPort1.Close();
                 button2.Text = "连接";
-                gb_left.Enabled = gb_right.Enabled = false;
+                button3.Enabled = gb_left.Enabled = gb_right.Enabled = false;
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            string str = "";
+            str += cb_lCtrl.Checked ? 1 : 0;
+            str += cb_lShift.Checked ? 1 : 0;
+            str += cb_lAlt.Checked ? 1 : 0;
+            str += cb_lWin.Checked ? 1 : 0;
+            str += (char)29;
+            str += textBox1.Text;
+            str += (char)29; 
+            str += "";
+            str += cb_rCtrl.Checked ? 1 : 0;
+            str += cb_rShift.Checked ? 1 : 0;
+            str += cb_rAlt.Checked ? 1 : 0;
+            str += cb_rWin.Checked ? 1 : 0;
+            str += (char)29;
+            str += textBox2.Text;
+            str += (char)29;
+            serialPort1.WriteLine(str);
         }
     }
 }
