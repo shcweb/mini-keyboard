@@ -11,6 +11,7 @@
 #define RPIN 13
 
 bool is_left_pressed = false, is_right_pressed = false;
+bool is_press_left = true, is_press_right = true;
 
 struct Keys
 {
@@ -29,6 +30,26 @@ void setup() {
 	Serial.begin(9600);
 	EEPROM.get(0, keys);
 	Keyboard.begin();
+	int checker = 0;
+	for (int i = 0; i < keys.LstrLength; i++)
+	{
+		int val = keys.Lstr[i] - 'a';
+		if ((checker & (1 << val)) > 0)
+		{
+			is_press_left = false;
+		}
+		checker |= (1 << val);
+	}
+	checker = 0;
+	for (int i = 0; i < keys.RstrLength; i++)
+	{
+		int val = keys.Rstr[i] - 'a';
+		if ((checker & (1 << val)) > 0)
+		{
+			is_press_right = false;
+		}
+		checker |= (1 << val);
+	}
 }
 
 // the loop function runs over and over again until power down or reset
@@ -71,12 +92,20 @@ void loop() {
 			Keyboard.press(KEY_LEFT_ALT);
 		if (keys.Lkey & B1000)
 			Keyboard.press(KEY_LEFT_GUI);
-		Keyboard.print(keys.Lstr);
+		if (is_press_left)
+			for (int i = 0; i < keys.LstrLength; i++)
+				Keyboard.press(keys.Lstr[i]);
+		else
+			Keyboard.print(keys.Lstr);
 		is_left_pressed = true;
-		delay(50);
+		while (!digitalRead(LPIN));
+		delay(70);
 	}
 	else if (digitalRead(LPIN) && is_left_pressed)
 	{
+		if (is_press_left)
+			for (int i = 0; i < keys.LstrLength; i++)
+				Keyboard.release(keys.Lstr[i]);
 		if (keys.Lkey & B0001)
 			Keyboard.release(KEY_LEFT_CTRL);
 		if (keys.Lkey & B0010)
@@ -97,12 +126,20 @@ void loop() {
 			Keyboard.press(KEY_LEFT_ALT);
 		if (keys.Rkey & B1000)
 			Keyboard.press(KEY_LEFT_GUI);
-		Keyboard.print(keys.Rstr);
+		if (is_press_right)
+			for (int i = 0; i < keys.RstrLength; i++)
+				Keyboard.press(keys.Rstr[i]);
+		else
+			Keyboard.print(keys.Rstr);
 		is_right_pressed = true;
-		delay(50);
+		while (!digitalRead(LPIN));
+		delay(70);
 	}
 	else if (digitalRead(RPIN) && is_right_pressed)
 	{
+		if (is_press_right)
+			for (int i = 0; i < keys.RstrLength; i++)
+				Keyboard.release(keys.Rstr[i]);
 		if (keys.Rkey & B0001)
 			Keyboard.release(KEY_LEFT_CTRL);
 		if (keys.Rkey & B0010)
