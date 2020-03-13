@@ -119,7 +119,7 @@ namespace mini_keyboard
             str += (char)29;
             str += textBox2.Text;
             str += (char)29;
-            MessageBox.Show(str.Replace((char)29, '|'));
+            //MessageBox.Show(str.Replace((char)29, '|'));
             serialPort1.WriteLine(str.ToLower());
         }
     }

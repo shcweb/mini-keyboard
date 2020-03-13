@@ -13,6 +13,7 @@
 
 bool is_left_pressed = false, is_right_pressed = false;
 bool is_press_left = true, is_press_right = true;
+unsigned long lTime = 0, rTime = 0;
 
 struct Keys
 {
@@ -28,30 +29,31 @@ struct Keys
 
 void selectMode()
 {
-	int checker = 0;
+	is_press_left = is_press_right = true;
+	for (char i = ' '; i <= '~'; i++)
+	{
+		bool buff = false;
+		for (int j = 0; j <= keys.LstrLength; j++)
+		{
+			if (buff && keys.Lstr[j] == i)
+				is_press_left = false;
+			if (!buff && keys.Lstr[j] == i)
+				buff = true;
+		}
+		buff = false;
+		for (int j = 0; j <= keys.RstrLength; j++)
+		{
+			if (buff && keys.Rstr[j] == i)
+				is_press_right = false;
+			if (!buff && keys.Rstr[j] == i)
+				buff = true;
+		}
+
+	}
 	if (keys.LstrLength > 5)
 		is_press_left = false;
-	for (int i = 0; i < keys.LstrLength; i++)
-	{
-		int val = keys.Lstr[i] - 'a';
-		if ((checker & (1 << val)) > 0)
-		{
-			is_press_left = false;
-		}
-		checker |= (1 << val);
-	}
-	checker = 0;
 	if (keys.RstrLength > 5)
 		is_press_left = false;
-	for (int i = 0; i < keys.RstrLength; i++)
-	{
-		int val = keys.Rstr[i] - 'a';
-		if ((checker & (1 << val)) > 0)
-		{
-			is_press_right = false;
-		}
-		checker |= (1 << val);
-	}
 }
 
 // the setup function runs once when you press reset or power the board
@@ -95,9 +97,11 @@ void loop() {
 		EEPROM.put(0, keys);
 		while (Serial.available() > 0)
 			Serial.read();
+
 		selectMode();
 	}
-
+	if (!digitalRead(LPIN))
+		lTime = millis();
 	if (!digitalRead(LPIN) && !is_left_pressed)
 	{
 		if (keys.Lkey & B00000001)
@@ -128,10 +132,8 @@ void loop() {
 			Keyboard.print(keys.Lstr);
 
 		is_left_pressed = true;
-		while (!digitalRead(LPIN));
-		delay(70);
 	}
-	else if (digitalRead(LPIN) && is_left_pressed)
+	else if (digitalRead(LPIN) && is_left_pressed && millis() - lTime > 50)
 	{
 		if (is_press_left)
 			for (int i = 0; i < keys.LstrLength; i++)
@@ -159,6 +161,9 @@ void loop() {
 			Keyboard.release(KEY_BACKSPACE);
 		is_left_pressed = false;
 	}
+
+	if (!digitalRead(RPIN))
+		rTime = millis();
 	if (!digitalRead(RPIN) && !is_right_pressed)
 	{
 		if (keys.Rkey & B00000001)
@@ -189,10 +194,8 @@ void loop() {
 			Keyboard.print(keys.Rstr);
 
 		is_right_pressed = true;
-		while (!digitalRead(LPIN));
-		delay(70);
 	}
-	else if (digitalRead(RPIN) && is_right_pressed)
+	else if (digitalRead(RPIN) && is_right_pressed && millis() - rTime > 50)
 	{
 		if (is_press_right)
 			for (int i = 0; i < keys.RstrLength; i++)
