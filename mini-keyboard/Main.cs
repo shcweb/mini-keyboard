@@ -75,17 +75,25 @@ namespace mini_keyboard
             str += cb_lShift.Checked ? 1 : 0;
             str += cb_lAlt.Checked ? 1 : 0;
             str += cb_lWin.Checked ? 1 : 0;
+            str += cb_lTab.Checked ? 1 : 0;
+            str += cb_lDel.Checked ? 1 : 0;
+            str += cb_lEsc.Checked ? 1 : 0;
+            str += cb_lBak.Checked ? 1 : 0;
             str += (char)29;
             str += textBox1.Text;
             str += (char)29;
-            str += "";
             str += cb_rCtrl.Checked ? 1 : 0;
             str += cb_rShift.Checked ? 1 : 0;
             str += cb_rAlt.Checked ? 1 : 0;
             str += cb_rWin.Checked ? 1 : 0;
+            str += cb_rTab.Checked ? 1 : 0;
+            str += cb_rDel.Checked ? 1 : 0;
+            str += cb_rEsc.Checked ? 1 : 0;
+            str += cb_rBak.Checked ? 1 : 0;
             str += (char)29;
             str += textBox2.Text;
             str += (char)29;
+            //MessageBox.Show(str.Replace((char)29, '|'));
             serialPort1.WriteLine(str.ToLower());
         }
     }
