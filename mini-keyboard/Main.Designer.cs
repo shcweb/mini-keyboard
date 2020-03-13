@@ -58,9 +58,9 @@
             this.gb_left.Controls.Add(this.cb_lShift);
             this.gb_left.Controls.Add(this.cb_lCtrl);
             this.gb_left.Location = new System.Drawing.Point(24, 76);
-            this.gb_left.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.gb_left.Margin = new System.Windows.Forms.Padding(6);
             this.gb_left.Name = "gb_left";
-            this.gb_left.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.gb_left.Padding = new System.Windows.Forms.Padding(6);
             this.gb_left.Size = new System.Drawing.Size(384, 136);
             this.gb_left.TabIndex = 0;
             this.gb_left.TabStop = false;
@@ -69,7 +69,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(8, 84);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(362, 35);
             this.textBox1.TabIndex = 12;
@@ -78,7 +78,7 @@
             // 
             this.cb_lWin.AutoSize = true;
             this.cb_lWin.Location = new System.Drawing.Point(292, 36);
-            this.cb_lWin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cb_lWin.Margin = new System.Windows.Forms.Padding(4);
             this.cb_lWin.Name = "cb_lWin";
             this.cb_lWin.Size = new System.Drawing.Size(78, 28);
             this.cb_lWin.TabIndex = 11;
@@ -89,7 +89,7 @@
             // 
             this.cb_lAlt.AutoSize = true;
             this.cb_lAlt.Location = new System.Drawing.Point(208, 36);
-            this.cb_lAlt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cb_lAlt.Margin = new System.Windows.Forms.Padding(4);
             this.cb_lAlt.Name = "cb_lAlt";
             this.cb_lAlt.Size = new System.Drawing.Size(78, 28);
             this.cb_lAlt.TabIndex = 10;
@@ -100,7 +100,7 @@
             // 
             this.cb_lShift.AutoSize = true;
             this.cb_lShift.Location = new System.Drawing.Point(104, 36);
-            this.cb_lShift.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cb_lShift.Margin = new System.Windows.Forms.Padding(4);
             this.cb_lShift.Name = "cb_lShift";
             this.cb_lShift.Size = new System.Drawing.Size(102, 28);
             this.cb_lShift.TabIndex = 9;
@@ -111,7 +111,7 @@
             // 
             this.cb_lCtrl.AutoSize = true;
             this.cb_lCtrl.Location = new System.Drawing.Point(8, 36);
-            this.cb_lCtrl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cb_lCtrl.Margin = new System.Windows.Forms.Padding(4);
             this.cb_lCtrl.Name = "cb_lCtrl";
             this.cb_lCtrl.Size = new System.Drawing.Size(90, 28);
             this.cb_lCtrl.TabIndex = 8;
@@ -123,7 +123,7 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(24, 24);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(6);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(208, 32);
             this.comboBox1.TabIndex = 2;
@@ -131,7 +131,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(248, 20);
-            this.button1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button1.Margin = new System.Windows.Forms.Padding(6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(180, 46);
             this.button1.TabIndex = 3;
@@ -142,7 +142,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(440, 20);
-            this.button2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button2.Margin = new System.Windows.Forms.Padding(6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(180, 46);
             this.button2.TabIndex = 4;
@@ -153,12 +153,13 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(632, 20);
-            this.button3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button3.Margin = new System.Windows.Forms.Padding(6);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(180, 46);
             this.button3.TabIndex = 5;
             this.button3.Text = "修改";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // gb_right
             // 
@@ -168,9 +169,9 @@
             this.gb_right.Controls.Add(this.checkBox3);
             this.gb_right.Controls.Add(this.checkBox4);
             this.gb_right.Location = new System.Drawing.Point(428, 76);
-            this.gb_right.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.gb_right.Margin = new System.Windows.Forms.Padding(6);
             this.gb_right.Name = "gb_right";
-            this.gb_right.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.gb_right.Padding = new System.Windows.Forms.Padding(6);
             this.gb_right.Size = new System.Drawing.Size(384, 136);
             this.gb_right.TabIndex = 13;
             this.gb_right.TabStop = false;
@@ -179,7 +180,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(8, 84);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(362, 35);
             this.textBox2.TabIndex = 12;
@@ -188,7 +189,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(292, 36);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(78, 28);
             this.checkBox1.TabIndex = 11;
@@ -199,7 +200,7 @@
             // 
             this.checkBox2.AutoSize = true;
             this.checkBox2.Location = new System.Drawing.Point(208, 36);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(78, 28);
             this.checkBox2.TabIndex = 10;
@@ -210,7 +211,7 @@
             // 
             this.checkBox3.AutoSize = true;
             this.checkBox3.Location = new System.Drawing.Point(104, 36);
-            this.checkBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox3.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(102, 28);
             this.checkBox3.TabIndex = 9;
@@ -221,7 +222,7 @@
             // 
             this.checkBox4.AutoSize = true;
             this.checkBox4.Location = new System.Drawing.Point(8, 36);
-            this.checkBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox4.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(90, 28);
             this.checkBox4.TabIndex = 8;
@@ -239,7 +240,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.gb_left);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Main";
             this.Text = "键位设置";
             this.Load += new System.EventHandler(this.Main_Load);

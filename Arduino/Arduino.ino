@@ -5,8 +5,12 @@
 */
 #include <Keyboard.h>
 #include <EEPROM.h>
+
 #define LPIN 9
 #define RPIN 13
+
+bool is_left_pressed = false, is_right_pressed = false;
+
 struct Keys
 {
     byte Lkey = B0000;
@@ -16,6 +20,7 @@ struct Keys
     byte RstrLength = 0;
     char Rstr[50] = "";
 } keys;
+
 // the setup function runs once when you press reset or power the board
 void setup() {
     pinMode(LPIN, INPUT_PULLUP);
@@ -51,7 +56,7 @@ void loop() {
         keys.RstrLength = strlen(keys.Rstr);
         EEPROM.put(0, keys);
     }
-    if (digitalRead(LPIN))
+    if (digitalRead(LPIN) && !is_left_pressed)
     {
         if (keys.Lkey & B0001)
             Keyboard.press(KEY_LEFT_CTRL);
@@ -60,9 +65,10 @@ void loop() {
         if (keys.Lkey & B0100)
             Keyboard.press(KEY_LEFT_ALT);
         if (keys.Lkey & B1000)
-            Keyboard.press(KEY_LEFT_ALT);
+            Keyboard.press(KEY_LEFT_GUI);
         for (int i = 0; i < keys.LstrLength; i++)
             Keyboard.press(keys.Lstr[i]);
+        is_left_pressed = true;
     }
     else
     {
@@ -73,11 +79,12 @@ void loop() {
         if (keys.Lkey & B0100)
             Keyboard.release(KEY_LEFT_ALT);
         if (keys.Lkey & B1000)
-            Keyboard.release(KEY_LEFT_ALT);
+            Keyboard.release(KEY_LEFT_GUI);
         for (int i = 0; i < keys.LstrLength; i++)
             Keyboard.release(keys.Lstr[i]);
+        is_left_pressed = false;
     }
-    if (digitalRead(RPIN))
+    if (digitalRead(RPIN) && !is_right_pressed)
     {
         if (keys.Rkey & B0001)
             Keyboard.press(KEY_LEFT_CTRL);
@@ -86,9 +93,10 @@ void loop() {
         if (keys.Rkey & B0100)
             Keyboard.press(KEY_LEFT_ALT);
         if (keys.Rkey & B1000)
-            Keyboard.press(KEY_LEFT_ALT);
+            Keyboard.press(KEY_LEFT_GUI);
         for (int i = 0; i < keys.RstrLength; i++)
             Keyboard.press(keys.Rstr[i]);
+        is_right_pressed = true;
     }
     else
     {
@@ -99,8 +107,9 @@ void loop() {
         if (keys.Rkey & B0100)
             Keyboard.release(KEY_LEFT_ALT);
         if (keys.Rkey & B1000)
-            Keyboard.release(KEY_LEFT_ALT);
+            Keyboard.release(KEY_LEFT_GUI);
         for (int i = 0; i < keys.RstrLength; i++)
             Keyboard.release(keys.Rstr[i]);
+        is_right_pressed = false;
     }
 }
